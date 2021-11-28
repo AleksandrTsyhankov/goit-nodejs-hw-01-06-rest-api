@@ -1,21 +1,15 @@
-// const { BadRequest } = require('http-errors')
-// const joiSchema = require('../../middlewares/validation/addContactValidation')
-const contactsOperations = require('../../models/index')
+const { Contact } = require('../../schemas/contact')
 
 const post = async (req, res, next) => {
-  try {
-    const result = await contactsOperations.addContact(req.body)
+  const result = await Contact.create(req.body)
 
-    res.status(201).json({
-      status: 'success',
-      code: 201,
-      data: {
-        result
-      }
-    })
-  } catch (error) {
-    next(error)
-  }
+  res.status(201).json({
+    status: 'success',
+    code: 201,
+    data: {
+      result
+    }
+  })
 }
 
 module.exports = post

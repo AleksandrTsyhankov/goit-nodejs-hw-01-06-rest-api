@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const { getAll, getById, post, remove, update } = require('../../controllers/index')
 const { validation, controllerWrapper } = require('../../middlewares/index')
-const joiSchema = require('../../schemas/contactsSchema')
+const { joiSchema } = require('../../schemas/contact')
 
 router.get('/', controllerWrapper(getAll))
 
@@ -13,5 +13,7 @@ router.post('/', validation(joiSchema), controllerWrapper(post))
 router.delete('/:contactId', controllerWrapper(remove))
 
 router.put('/:contactId', validation(joiSchema), controllerWrapper(update))
+
+router.patch('/:contactId/favorite', controllerWrapper(update))
 
 module.exports = router

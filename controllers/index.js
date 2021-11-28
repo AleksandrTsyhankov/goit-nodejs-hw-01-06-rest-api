@@ -3,7 +3,8 @@ const contactsControllers = {
   getById: require('./contacts/getById'),
   post: require('./contacts/post'),
   remove: require('./contacts/remove'),
-  update: require('./contacts/update')
+  update: require('./contacts/update'),
+  patchFavorite: require('./contacts/patchFavorite')
 }
 
 module.exports = contactsControllers
