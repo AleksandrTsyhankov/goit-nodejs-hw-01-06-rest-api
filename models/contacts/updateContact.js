@@ -7,12 +7,11 @@ const contactsPath = path.join(__dirname, '../../db/contacts.json')
 const updateContact = async (id, data) => {
   const contacts = await readData()
 
-  const idx = contacts.findIndex(item => JSON.stringify(item.id) === id)
+  const idx = contacts.findIndex(item => String(item.id) === String(id))
   if (idx === -1) {
     return null
   }
 
-  id = JSON.parse(id)
   contacts[idx] = { ...data, id }
   const contactStr = JSON.stringify(contacts, null, 2)
   await fs.writeFile(contactsPath, contactStr)
