@@ -7,7 +7,7 @@ const contactsDir = path.join(__dirname, '../../public/avatars');
 
 const post = async (req, res, next) => {
   const avatar = gravatar.url('aleksandr@mail.com')
-  const newContact = { ...req.body, owner: req.user._id }
+  const newContact = { ...req.body, owner: req.user._id, avatar }
   const result = await contacts.Contact.create({ ...newContact, avatar })
 
   const contactsFolder = path.join(contactsDir, String(result._id));
