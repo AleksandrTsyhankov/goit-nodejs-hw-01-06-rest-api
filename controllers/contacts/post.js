@@ -1,7 +1,8 @@
-const { Contact } = require('../../schemas/contact')
+const { contacts } = require('../../models/index')
 
 const post = async (req, res, next) => {
-  const result = await Contact.create(req.body)
+  const newContact = { ...req.body, owner: req.user._id }
+  const result = await contacts.Contact.create(newContact)
 
   res.status(201).json({
     status: 'success',

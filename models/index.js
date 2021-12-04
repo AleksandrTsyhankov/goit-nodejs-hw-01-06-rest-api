@@ -1,9 +1,6 @@
-const contactsArr = {
-  listContacts: require('./contacts/listContacts'),
-  getContactById: require('./contacts/getContactById'),
-  removeContact: require('./contacts/removeContact'),
-  addContact: require('./contacts/addContact'),
-  updateContact: require('./contacts/updateContact')
+const models = {
+  contacts: require('./contact'),
+  users: require('./user')
 }
 
-module.exports = contactsArr
+module.exports = models

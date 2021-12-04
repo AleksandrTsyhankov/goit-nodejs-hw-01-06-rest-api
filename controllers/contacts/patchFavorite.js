@@ -1,5 +1,5 @@
 const { NotFound } = require('http-errors')
-const { Contact } = require('../../schemas/contact')
+const { Contact } = require('../../models/index')
 
 const patchFavorite = async (req, res) => {
   const { contactId } = req.params
