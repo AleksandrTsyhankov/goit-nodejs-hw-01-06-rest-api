@@ -3,7 +3,7 @@ const { contacts } = require('../../models/index')
 const fs = require('fs/promises');
 const path = require('path');
 
-const contactsDir = path.join(__dirname, '../../public/contacts');
+const contactsDir = path.join(__dirname, '../../public/avatars');
 
 const post = async (req, res, next) => {
   const avatar = gravatar.url('aleksandr@mail.com')
