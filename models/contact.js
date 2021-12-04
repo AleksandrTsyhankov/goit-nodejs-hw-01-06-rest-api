@@ -19,6 +19,10 @@ const contactSchema = Schema({
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'user',
+  },
+  avatar: {
+    type: String,
+    required: true
   }
 }, { versionKey: false, timestamps: true })
 
