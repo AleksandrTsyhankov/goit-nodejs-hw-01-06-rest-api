@@ -5,7 +5,8 @@ const contactsControllers = {
   remove: require('./contacts/remove'),
   update: require('./contacts/update'),
   patchFavorite: require('./contacts/patchFavorite'),
-  auth: require('./auth/index')
+  auth: require('./auth/index'),
+  updateAvatar: require('./contacts/updateAvatar')
 }
 
 module.exports = contactsControllers
