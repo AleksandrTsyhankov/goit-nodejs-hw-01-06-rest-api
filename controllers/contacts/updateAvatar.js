@@ -6,7 +6,7 @@ const Jimp = require('jimp');
 
 const { contacts } = require('../../models/index');
 const { Contact } = contacts;
-const contactsDir = path.join(__dirname, '../../public/contacts');
+const contactsDir = path.join(__dirname, '../../public/avatars');
 
 const updateAvatar = async (req, res) => {
   const { id } = req.params;
@@ -17,7 +17,7 @@ const updateAvatar = async (req, res) => {
     const fileName = `${id}_${date}_${originalname}`;
     const resultUpload = path.join(contactsDir, id, fileName);
     await fs.rename(tempUpload, resultUpload);
-    const avatar = path.join('/contacts', id, fileName);
+    const avatar = path.join('/avatars', id, fileName);
 
 
     const result = await Contact.findByIdAndUpdate(id, { avatar }, { new: true });
