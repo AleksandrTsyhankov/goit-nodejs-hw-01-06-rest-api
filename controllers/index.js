@@ -4,7 +4,8 @@ const contactsControllers = {
   post: require('./contacts/post'),
   remove: require('./contacts/remove'),
   update: require('./contacts/update'),
-  patchFavorite: require('./contacts/patchFavorite')
+  patchFavorite: require('./contacts/patchFavorite'),
+  auth: require('./auth/index')
 }
 
 module.exports = contactsControllers
