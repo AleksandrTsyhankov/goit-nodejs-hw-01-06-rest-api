@@ -8,6 +8,7 @@ const contactsControllers = {
   auth: require('./auth/index'),
   updateAvatar: require('./contacts/updateAvatar'),
   verify: require('./auth/verify'),
+  reVerify: require('./auth/reVerify')
 }
 
 module.exports = contactsControllers

@@ -1,41 +1,38 @@
 const { BadRequest } = require('http-errors')
-const jwt = require('jsonwebtoken')
-const { users } = require('../../models/index')
-const { User } = users
-const { SECRET_KEY } = process.env
 
-const login = async (req, res) => {
-  const { email, password } = req.body
+const { sendMail } = require('../../helpers/index');
+const { users } = require('../../models/index');
 
-  const user = await User.findOne({ email })
+const { User } = users;
 
-  if (!user || !user.verify || !user.comparePassword(password)) {
-    throw new BadRequest('Wrond email or password')
-  }
+const reVerify = async (req, res) => {
+  const { email } = req.body;
+  if (!email) {
+    throw new BadRequest(`Wrong email: ${email}`);
+  };
 
-  const payload = {
-    id: user._id
-  }
+  const user = await User.findOne({ email });
+  if (user.verify) {
+    throw new BadRequest('Verification has already been passed');
+  };
 
-  const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '1000h' })
+  const verificationToken = user.verificationToken;
 
-  await User.findByIdAndUpdate(user._id, { token })
-  res.json({
-    status: 'success',
+  const mail = {
+    to: 'tsygankov1986@gmail.com',
+    subject: 'Подтверждение регистрации',
+    html: `<a href="http://localhost:3000/api/auth/verify/${verificationToken}">Нажмите для подтверждения email</a>`
+  };
+  await sendMail(mail);
+
+  res.status(201).json({
+    Status: '200 Ok',
     code: 200,
-    data: {
-      token
+    'Content-Type': 'application/json',
+    ResponseBody: {
+      message: 'Verification email sent'
     }
-  })
-  // if (!user) {
-  //   throw new NotFound(`User with email=${email} not found`)
-  // }
+  });
+};
 
-  // const compareResult = bcrypt.compareSync(password, user.password)
-
-  // if (!compareResult) {
-  //   throw new Unauthorized('Password wrong')
-  // }
-}
-
-module.exports = login
+module.exports = reVerify;
