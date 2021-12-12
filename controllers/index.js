@@ -6,7 +6,9 @@ const contactsControllers = {
   update: require('./contacts/update'),
   patchFavorite: require('./contacts/patchFavorite'),
   auth: require('./auth/index'),
-  updateAvatar: require('./contacts/updateAvatar')
+  updateAvatar: require('./contacts/updateAvatar'),
+  verify: require('./auth/verify'),
+  reVerify: require('./auth/reVerify')
 }
 
 module.exports = contactsControllers
